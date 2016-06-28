@@ -20,6 +20,11 @@ class Im(object):
     def __repr__(self):
         return self.__str__()
 
-    def send_message(self, message):
-        message_json = {"type": "message", "channel": self.id, "text": message}
+    def send_message(self, message, mrkdwn=False):
+        message_json = {
+            "type": "message",
+            "channel": self.id,
+            "text": message,
+            "mrkdwn": mrkdwn
+        }
         self.server.send_to_websocket(message_json)
